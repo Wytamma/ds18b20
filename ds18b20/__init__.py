@@ -34,9 +34,9 @@ class Probe:
     
     def changed(self):
         t = self._temperature
-        if self.read_temperature() == t:
-            return False
-        return True
+        if abs(self.read_temperature() - t) > 0.001:
+            return True
+        return False
 
     def _get_temp(self):  # TODO: async?
         for _ in range(3):
