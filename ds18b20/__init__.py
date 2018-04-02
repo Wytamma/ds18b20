@@ -40,6 +40,8 @@ class Probe:
 
     def _get_temp(self):  # TODO: async?
         for _ in range(3):
+            if not os.path.exists(self._probe_addr):
+                break
             with open(self._probe_addr, 'r') as f_obj:
                 lines = f_obj.readlines()
                 if lines[0].find("YES") is -1:
