@@ -1,4 +1,5 @@
 from .context import ds18b20
+import time
 
 print('ds18b20.all_probes:', ds18b20.all_probes())
 p = ds18b20.all_probes()[0]
