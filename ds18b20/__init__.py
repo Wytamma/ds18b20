@@ -2,7 +2,7 @@ import os
 import fnmatch
 import time
 
-def get_all_probes(self):
+def get_all_probes():
     """return list of probes"""
     return [Probe(probe_id) for probe_id in os.listdir("/sys/bus/w1/devices") if fnmatch.fnmatch(probe_id, '28-*')]    
 
@@ -18,7 +18,7 @@ class Probe:
 
     def __repr__(self):
         return 'Probe({})'.format(self.probe_id)
-        
+
     def temperature(self):
         self._temperature = self._get_temp()
         return self._temperature
