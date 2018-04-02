@@ -2,11 +2,11 @@ import os
 import fnmatch
 import time
 
-def get_all_probes():
+def all_probes():
     """return list of probes"""
     return [Probe(probe_id) for probe_id in os.listdir("/sys/bus/w1/devices") if fnmatch.fnmatch(probe_id, '28-*')]    
 
-def get_probe_by_id(probe_id):
+def probe_by_id(probe_id):
     if os.path.exists('/sys/bus/w1/devices/{}/w1_slave'.format(probe_id)):
         return Probe(probe_id)
 
@@ -14,14 +14,14 @@ class Probe:
     def __init__(self, probe_id):
         self.probe_id = probe_id
         self._probe_addr = '/sys/bus/w1/devices/{}/w1_slave'.format(self.probe_id)
-        self._temperature = None
+        self.temperature = None
 
     def __repr__(self):
         return 'Probe({})'.format(self.probe_id)
 
-    def temperature(self):
-        self._temperature = self._get_temp()
-        return self._temperature
+    def read_temperature(self):
+        self.temperature = self._get_temp()
+        return self.temperature
 
     def mean_temperature(self, n):
         temps = []
