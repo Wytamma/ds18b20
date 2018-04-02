@@ -14,14 +14,14 @@ class Probe:
     def __init__(self, probe_id):
         self.probe_id = probe_id
         self._probe_addr = '/sys/bus/w1/devices/{}/w1_slave'.format(self.probe_id)
-        self.temperature = None
+        self._temperature = None
 
     def __repr__(self):
         return 'Probe({})'.format(self.probe_id)
 
     def read_temperature(self):
-        self.temperature = self._get_temp()
-        return self.temperature
+        self._temperature = self._get_temp()
+        return self._temperature
 
     def mean_temperature(self, n):
         temps = []
@@ -33,7 +33,7 @@ class Probe:
         return sum(temps)/n
     
     def changed(self):
-        t = self.temperature
+        t = self._temperature
         if self.read_temperature() == t:
             return False
         return True
