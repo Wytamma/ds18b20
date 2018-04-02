@@ -16,6 +16,9 @@ class Probe:
         self._probe_addr = '/sys/bus/w1/devices/{}/w1_slave'.format(self.probe_id)
         self._temperature = None
 
+    def __repr__(self):
+        return 'Probe({})'.format(self.probe_id)
+        
     def temperature(self):
         self._temperature = self._get_temp()
         return self._temperature
