@@ -1,7 +1,7 @@
 from .context import ds18b20
 
-print('ds18b20.all_probes:', ds18b20.all_probes)
-p = ds18b20.all_probes[0]
+print('ds18b20.all_probes:', ds18b20.all_probes())
+p = ds18b20.all_probes()[0]
 
 print('ds18b20.probe_by_id:', ds18b20.probe_by_id(p.probe_id))
 
