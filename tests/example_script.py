@@ -12,7 +12,7 @@ def script():
 
     print('Wating for change...')
     while not p.changed():
-    time.sleep(1)
+        time.sleep(1)
     print('Chnaged!', temp - p.read_temperature())
 
 if __name__ == '__main__':
