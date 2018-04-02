@@ -32,6 +32,12 @@ class Probe:
             temps.append(temp)
         return sum(temps)/n
     
+    def changed(self):
+        t = self.temperature
+        if self.read_temperature() == t:
+            return False
+        return True
+
     def _get_temp(self):  # TODO: async?
         for _ in range(3):
             with open(self._probe_addr, 'r') as f_obj:
