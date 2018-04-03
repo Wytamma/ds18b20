@@ -34,7 +34,7 @@ class Probe:
     
     def changed(self):
         t = self._temperature
-        if abs(self.read_temperature() - t) > 0.001:
+        if abs(self.read_temperature() - t) >= 0.001:
             return True
         return False
 
